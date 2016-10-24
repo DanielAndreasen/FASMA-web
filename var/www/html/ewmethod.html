@@ -20,26 +20,26 @@
   <div id="includeNavbar"></div>
 
   <div class="container-fluid">
-    <h1 class="text-primary text-center"><a href="/var/www/html/index.html">FASMA</a></h1>
-    <h2 class="text-secondary text-center">Fast Analysis of Spectra Made Automatically</h2>
+    <h2 class="text-primary text-center"><a href="/index.html">FASMA</a></h2>
+    <h3 class="text-secondary text-center">Fast Analysis of Spectra Made Automatically</h3>
 
     <h3>EW method driver</h3>
     <p>Obtain atmospheric parameters using the EW method.</p>
 
-    <form class="form-horizontal" action="/cgi-bin/ewmethodConf.py" method="get">
+    <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewmethodConf.py" method="post">
       <div class="row-fluid">
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="control-label col-sm-2">Linelist:</label>
+            <label title="Line list in MOOG format" class="control-label col-sm-2">Line list:</label>
             <div class="col-sm-3">
-              <input type="file" name="spectrum" class="btn btn-default" placeholder="Enter fits spectrum" required>
+              <input type="file" name="linelist" class="btn btn-default" placeholder="Enter line list" required>
             </div>
           </div>
           <!-- form-group -->
 
           <div class="input-group" style="padding-left:88px">
             <span class="input-group-addon" style="width:80px">
-              <label>T<sub>eff</sub></label>
+              <label title="The effective temperature in Kelvin">T<sub>eff</sub></label>
             </span>
             <input type="text" class="form-control" style="width:250px" name="Teff" value="5777" required>
           </div>
@@ -47,7 +47,7 @@
 
           <div class="input-group" style="padding-left:88px">
             <span class="input-group-addon" style="width:80px">
-              <label>logg</label>
+              <label title="The surface gravity in dex">logg</label>
             </span>
             <input type="text" class="form-control" style="width:250px" name="logg" value="4.44" required>
           </div>
@@ -55,17 +55,17 @@
 
           <div class="input-group" style="padding-left:88px">
             <span class="input-group-addon" style="width:80px">
-              <label>[Fe/H]</label>
+              <label title="The overall metallicity/iron in dex">[Fe/H]</label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="feh" value="0.00">
+            <input type="text" class="form-control" style="width:250px" name="feh" value="0.00" required>
           </div>
           <!-- input-group -->
 
           <div class="input-group" style="padding-left:88px">
             <span class="input-group-addon" style="width:80px">
-              <label>&xi;<sub>tur</sub></label>
+              <label title="The micro turbulence in km/s">&xi;<sub>tur</sub></label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="vt" value="1.00">
+            <input type="text" class="form-control" style="width:250px" name="vt" value="1.00" required>
           </div>
           <!-- input-group -->
         </div>
@@ -73,37 +73,38 @@
         <div class="col-lg-2">
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>Model atm.</label>
+              <label title="Model atmosphere">Model atm.</label>
             </span>
             <select class="form-control" name="atmosphere" style="width:110px">
               <option>Kurucz</option>
               <option>Marcs</option>
+              <option disabled>PHOENIX</option>
             </select>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>Outlier</label>
+              <label title="Remove outlier after finished minimization">Outlier</label>
             </span>
             <select class="form-control" name="outlier">
+              <option>None</option>
               <option>All once</option>
               <option>All iteratively</option>
               <option>One iteratively</option>
-              <option>None</option>
             </select>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>Sigma</label>
+              <label title="x*sigma clipping">Sigma</label>
             </span>
-            <input type="text" class="form-control" name="sigma" value="3">
+            <input type="text" placeholder="Some text" class="form-control" name="sigma" value="3">
           </div>
           <!-- input-group -->
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>Iterations</label>
+              <label title="Number of maximum iterations">Iterations</label>
             </span>
             <input type="text" class="form-control" name="iterations" value="160">
           </div>
@@ -111,7 +112,7 @@
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>EP slope</label>
+              <label title="The maximum allowed abundance vs. EP slope for convergence">EP slope</label>
             </span>
             <input type="text" class="form-control" name="EPslope" value="0.001">
           </div>
@@ -119,7 +120,7 @@
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>ERW slope</label>
+              <label title="The maximum allowed abundance vs. RW slope for convergence">RW slope</label>
             </span>
             <input type="text" class="form-control" name="RWslope" value="0.003">
           </div>
@@ -127,7 +128,7 @@
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label>|FeI-FeII|</label>
+              <label title="The maximum allowed difference in FeI-FeII for convergence">|FeI-FeII|</label>
             </span>
             <input type="text" class="form-control" name="feDiff" value="0.00">
           </div>
@@ -137,44 +138,44 @@
 
         <div class="col-lg-1">
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Fix T<sub>eff</sub></label>
+            <label for="checkbox" class="checkbox" title="Fix Teff">Fix T<sub>eff</sub></label>
             <input type="checkbox" class="checkbox" name="fixTeff">
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Fix logg</label>
+            <label for="checkbox" class="checkbox" title="Fix logg">Fix logg</label>
             <input type="checkbox" class="checkbox" name="fixlogg">
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Fix [Fe/H]</label>
+            <label for="checkbox" class="checkbox" title="Fix [Fe/H]">Fix [Fe/H]</label>
             <input type="checkbox" class="checkbox" name="fixfeh">
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Fix &xi;<sub>tur</sub></label>
+            <label for="checkbox" class="checkbox" title="Fix micro turbulence">Fix &xi;<sub>tur</sub></label>
             <input type="checkbox" class="checkbox" name="fixvt">
           </div>
         </div>
 
         <div class="col-lg-1">
           <div class="input-group">
-            <label for="checkbox" class="checkbox">T<sub>eff</sub> range</label>
+            <label for="checkbox" class="checkbox" title="For optical line list, automatically convert to cool line list for cool stars">T<sub>eff</sub> range</label>
             <input type="checkbox" class="checkbox" name="teffrange" checked>
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Auto fix &xi;<sub>tur</sub></label>
+            <label for="checkbox" class="checkbox" title="For low/high vt at the end of convergence, run again with fixed vt (emperical relation)">Auto fix &xi;<sub>tur</sub></label>
             <input type="checkbox" class="checkbox" name="autofixvt" checked>
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Refine</label>
+            <label for="checkbox" class="checkbox" title="Run a converged minimization with stricter criteria">Refine</label>
             <input type="checkbox" class="checkbox" name="refine" checked>
           </div>
 
           <div class="input-group">
-            <label for="checkbox" class="checkbox">Initial guess</label>
+            <label for="checkbox" class="checkbox" title="Use TMCal for a better guess on initial conditions">Initial guess</label>
             <input type="checkbox" class="checkbox" name="Initial">
           </div>
         </div>
