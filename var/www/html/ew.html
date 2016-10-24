@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//bootswatch.com/superhero/bootstrap.css" />
+  <link rel="stylesheet" href="/css/master.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/navbar.js"></script>
+
+  <title>FASMA</title>
+</head>
+
+
+<body>
+  <div id="includeNavbar"></div>
+
+  <div class="container-fluid">
+    <h2 class="text-primary text-center"><a href="/index.html">FASMA</a></h2>
+    <h3 class="text-secondary text-center">Fast Analysis of Spectra Made Automatically</h3>
+
+    <h3>EW driver</h3>
+    <p>Measuring EWs from a spectrum using a line list using <a href="http://www.astro.up.pt/~sousasag/ares/">ARES</a>.</p>
+    <p>
+      O que é o Lorem Ipsum? O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime
+      de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem
+      Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum. Porque é que o usamos?
+    </p>
+
+
+
+    <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewConf.py" method="post">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="control-label col-sm-2">Spectrum:</label>
+            <div class="col-sm-3">
+              <input type="file" name="spectrum" accept=".fits,.FITS,.fit,.FIT" class="btn btn-default" placeholder="Enter fits spectrum" required>
+            </div>
+          </div>
+          <!-- form-group -->
+
+          <div class="form-group">
+            <label class="control-label col-sm-3">Select line(s):</label>
+            <div class="col-sm-5">
+              <select class="form-control" name="linelist" multiple required>
+                <option>Optical (parameters)</option>
+                <option>Optical (abundances)</option>
+                <option>NIR (parameters)</option>
+                <option disabled>NIR (abundances)</option>
+              </select>
+            </div>
+            <!-- col-sm-4 -->
+          </div>
+          <!-- form-group -->
+        </div>
+        <!-- col-group -->
+
+        <div class="col-lg-2">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>&lambda;<sub>0</sub></label>
+            </span>
+            <input type="text" class="form-control" name="w0" value="3500" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>&lambda;<sub>f</sub></label>
+            </span>
+            <input type="text" class="form-control" name="wf" value="25000" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>RV (km/s)</label>
+            </span>
+            <input type="text" class="form-control" name="rv" value="0" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>Smooth noise</label>
+            </span>
+            <input type="text" class="form-control" name="smooth" value="4" required>
+          </div>
+          <!-- input-group -->
+        </div>
+        <!-- col-group -->
+
+        <div class="col-lg-2">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>EW min</label>
+            </span>
+            <input type="text" class="form-control" name="miniline" value="5" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>EW max</label>
+            </span>
+            <input type="text" class="form-control" name="EWcut" value="150" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>lineresol</label>
+            </span>
+            <input type="text" class="form-control" name="lineresol" value="0.07" required>
+          </div>
+          <!-- input-group -->
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:120px">
+              <label>Space</label>
+            </span>
+            <input type="text" class="form-control" name="space" value="2.0" required>
+          </div>
+          <!-- input-group -->
+        </div>
+        <!-- col-group -->
+      </div>
+      <!-- row -->
+
+      <div class="col-lg-2">
+        <div class="form-group">
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label><input type="Checkbox" name="force">Force ARES to run</label>
+            </div>
+          </div>
+        </div>
+        <!-- form-group -->
+      </div>
+
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <label class="radio-inline active"><input type="radio" name="continuum" value="autoRejt" checked>Auto rejt</label>
+          </span>
+          <span class="input-group-addon">
+            <label class="radio-inline"><input type="radio" name="continuum" value="snr">SNR</label>
+          </span>
+          <span class="input-group-addon">
+            <input type="text" name="snr">
+          </span>
+          <span class="input-group-addon">
+            <label class="radio-inline"><input type="radio" name="continuum" value="rejt">rejt</label>
+          </span>
+          <span class="input-group-addon">
+            <input type="text" name="rejt">
+          </span>
+        </div>
+        <!-- ubpuit group -->
+      </div>
+      <!-- col-lg-6 -->
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+</body>
