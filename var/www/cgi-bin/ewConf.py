@@ -75,14 +75,3 @@ if __name__ == '__main__':
     with open('../html/finish.html', 'r') as lines:
         for line in lines:
             print line
-
-    # print "<html>"
-    # print "<head>"
-    # print "<title>FASMA - ARES driver</title>"
-    # print "</head>"
-    # print "<body>"
-    # for f in form:
-    #     print "<p>%s: %s</p>" % (f, dir(form[f]))
-    # print "<p>%s</p>" % form
-    # print "</body>"
-    # print "</html>"
