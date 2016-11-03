@@ -58,13 +58,13 @@ def ew(form):
         fout += ',outlier:%s' % form['outlier']
         fout += ',sigma:%s' % form['sigma']
     if form['fixTeff']:
-        fout += 'fixteff'
+        fout += ',teff'
     if form['fixlogg']:
-        fout += 'fixlogg'
+        fout += ',logg'
     if form['fixfeh']:
-        fout += 'fixfeh'
+        fout += ',feh'
     if form['fixvt']:
-        fout += 'fixvt'
+        fout += ',vt'
 
     with open('/tmp/StarMe_ew.cfg', 'w') as f:
         f.writelines(fout + '\n')
