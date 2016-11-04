@@ -73,6 +73,43 @@ def ew(form):
     return parameters
 
 
+def parameters2HTML(parameters):
+    """Convert the parameters to HTML in a table"""
+
+    data = {'teff': parameters[0], 'tefferr': parameters[1],
+            'logg': parameters[2], 'loggerr': parameters[3],
+            'feh': parameters[4], 'feherr': parameters[5],
+            'vt': parameters[6], 'vterr': parameters[7]}
+
+    table = '''<table class="table table-hover table-bordered table-striped">
+                 <thead>
+                   <tr>
+                     <th>Parameters</th>
+                     <th>Value</th>
+                   </tr>
+                     </thead>
+                     <tbody>
+                   <tr>
+                     <td>T<sub>eff</sub></td>
+                     <td>{teff}&plusmn;{tefferr}</td>
+                   </tr>
+                   <tr>
+                     <td>logg</td>
+                     <td>{logg}&plusmn;{loggerr}</td>
+                   </tr>
+                   <tr>
+                     <td>[Fe/H]</td>
+                     <td>{feh}&plusmn;{feherr}</td>
+                   </tr>
+                   <tr>
+                     <td>&xi;<sub>tur</sub></td>
+                     <td>{vt}&plusmn;{vterr}</td>
+                   </tr>
+                 </tbody>
+               </table>'''.format(**data)
+    print table
+
+
 if __name__ == '__main__':
     # Enable debugging
     cgitb.enable()
@@ -85,10 +122,15 @@ if __name__ == '__main__':
 
     # Run the minimization for a line list
     formDict = cgi2dict(form, form['linelist'])
-    results = ew(formDict)
+    parameters = ew(formDict)
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
     with open('../html/finish.html', 'r') as lines:
         for line in lines:
-            print line
+            if 'Congratulations' in line:
+                print line,
+                print '<br>'
+                parameters2HTML(parameters)
+                continue
+            print line,
