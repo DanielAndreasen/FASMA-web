@@ -69,7 +69,8 @@ def ew(form):
     with open('/tmp/StarMe_ew.cfg', 'w') as f:
         f.writelines(fout + '\n')
 
-    ewdriver(starLines='/tmp/StarMe_ew.cfg', overwrite=True)
+    parameters = ewdriver(starLines='/tmp/StarMe_ew.cfg', overwrite=True)
+    return parameters
 
 
 if __name__ == '__main__':
@@ -84,13 +85,10 @@ if __name__ == '__main__':
 
     # Run the minimization for a line list
     formDict = cgi2dict(form, form['linelist'])
-    ew(formDict)
+    results = ew(formDict)
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
-    # for l in formDict.iterkeys():
-        # print "<p>%s: %s</p>" % (l, formDict[l])
-    # print "<p>%s</p>" % formDict
     with open('../html/finish.html', 'r') as lines:
         for line in lines:
             print line
