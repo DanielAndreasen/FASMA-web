@@ -29,10 +29,10 @@
     <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewmethodConf.py" method="post">
       <div class="row-fluid">
         <div class="col-lg-4">
-          <div class="form-group">
+          <div class="input-group">
             <label title="Line list in MOOG format" class="control-label col-sm-2">Line list:</label>
             <div class="col-sm-3">
-              <input type="file" name="linelist"  accept=".moog" class="btn btn-default" placeholder="Enter line list" required>
+              <input type="file" name="linelist" accept=".moog" class="btn btn-default" placeholder="Enter line list" required>
             </div>
           </div>
           <!-- form-group -->
@@ -68,6 +68,12 @@
             <input type="text" class="form-control" style="width:250px" name="vt" value="1.00" required>
           </div>
           <!-- input-group -->
+          <div class="input-group" style="padding-left:88px">
+            <span class="input-group-addon">
+              <label title="Email adress">Email</label>
+            </span>
+            <input type="email" class="form-control" name="email" placeholder="youremail@host" required>
+          </div>
         </div>
 
         <div class="col-lg-2">

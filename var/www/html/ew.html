@@ -37,8 +37,8 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="form-group">
-            <label class="control-label col-sm-2" title="1D fits spectrum">Spectrum:</label>
-            <div class="col-sm-3">
+            <label class="control-label col-sm-3" title="1D fits spectrum">Spectrum:</label>
+            <div class="col-sm-4">
               <input type="file" name="spectrum" accept=".fits,.FITS,.fit,.FIT" class="btn btn-default" placeholder="Enter fits spectrum" required>
             </div>
           </div>
@@ -46,7 +46,7 @@
 
           <div class="form-group">
             <label class="control-label col-sm-3" title="Line lists to use">Select line(s):</label>
-            <div class="col-sm-5">
+            <div class="col-sm-9">
               <select class="form-control" name="linelist" multiple required>
                 <option title="Line list by Sousa+ 2008/Tsantaki+ 2013">Optical (parameters)</option>
                 <option title="Line list by Neves+">Optical (abundances)</option>
@@ -54,11 +54,15 @@
                 <option disabled>NIR (abundances)</option>
               </select>
             </div>
-            <!-- col-sm-4 -->
           </div>
-          <!-- form-group -->
+
+          <div class="form-group">
+            <label title="Email adress" class="control-label col-sm-3">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" name="email" placeholder="youremail@host" required>
+            </div>
+          </div>
         </div>
-        <!-- col-group -->
 
         <div class="col-lg-2">
           <div class="input-group">
