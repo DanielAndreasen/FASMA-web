@@ -34,59 +34,61 @@
     <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewmethodConf.py" method="post">
       <div class="row-fluid">
         <div class="col-lg-4">
-          <div class="input-group">
-            <label title="Line list in MOOG format" class="control-label col-sm-2">Line list:</label>
-            <div class="col-sm-3">
-              <input type="file" name="linelist" accept=".moog" class="btn btn-default" placeholder="Enter line list" required>
-            </div>
-          </div>
-          <!-- form-group -->
 
-          <div class="input-group" style="padding-left:88px">
-            <span class="input-group-addon" style="width:80px">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
+              <label title="Line list in MOOG format">Line list</sub></label>
+            </span>
+            <span class="input-group-btn">
+              <input type="file" class="btn btn-default" style="width:300px" name="linelist" accept=".moog" required>
+            </span>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
               <label title="The effective temperature in Kelvin">T<sub>eff</sub></label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="Teff" value="5777" required>
+            <input type="text" class="form-control" style="width:300px" name="Teff" value="5777" required>
           </div>
           <!-- input-group -->
 
-          <div class="input-group" style="padding-left:88px">
-            <span class="input-group-addon" style="width:80px">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
               <label title="The surface gravity in dex">logg</label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="logg" value="4.44" required>
+            <input type="text" class="form-control" style="width:300px" name="logg" value="4.44" required>
           </div>
           <!-- input-group -->
 
-          <div class="input-group" style="padding-left:88px">
-            <span class="input-group-addon" style="width:80px">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
               <label title="The overall metallicity/iron in dex">[Fe/H]</label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="feh" value="0.00" required>
+            <input type="text" class="form-control" style="width:300px" name="feh" value="0.00" required>
           </div>
           <!-- input-group -->
 
-          <div class="input-group" style="padding-left:88px">
-            <span class="input-group-addon" style="width:80px">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
               <label title="The micro turbulence in km/s">&xi;<sub>tur</sub></label>
             </span>
-            <input type="text" class="form-control" style="width:250px" name="vt" value="1.00" required>
+            <input type="text" class="form-control" style="width:300px" name="vt" value="1.00" required>
           </div>
           <!-- input-group -->
-          <div class="input-group" style="padding-left:88px">
-            <span class="input-group-addon">
+          <div class="input-group">
+            <span class="input-group-addon" style="width:100px">
               <label title="Email adress">Email</label>
             </span>
-            <input type="email" class="form-control" name="email" placeholder="youremail@host" required>
+            <input type="email" class="form-control" style="width:300px" name="email" placeholder="youremail@host" required>
           </div>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-3">
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
               <label title="Model atmosphere">Model atm.</label>
             </span>
-            <select class="form-control" name="atmosphere">
+            <select class="form-control" name="atmosphere" style="width:160px">
               <option>Kurucz</option>
               <option>Marcs</option>
               <option disabled>PHOENIX</option>
@@ -97,7 +99,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="Remove outlier after finished minimization">Outlier</label>
             </span>
-            <select class="form-control" name="outlier">
+            <select class="form-control" name="outlier" style="width:160px">
               <option>None</option>
               <option>All once</option>
               <option>All iteratively</option>
@@ -109,7 +111,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="x*sigma clipping">Sigma</label>
             </span>
-            <input type="text" placeholder="Some text" class="form-control" name="sigma" value="3">
+            <input type="text" placeholder="Some text" class="form-control" name="sigma" value="3" style="width:160px">
           </div>
           <!-- input-group -->
 
@@ -117,7 +119,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="Number of maximum iterations">Iterations</label>
             </span>
-            <input type="text" class="form-control" name="iterations" value="160">
+            <input type="text" class="form-control" name="iterations" value="160" style="width:160px">
           </div>
           <!-- input-group -->
 
@@ -125,7 +127,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="The maximum allowed abundance vs. EP slope for convergence">EP slope</label>
             </span>
-            <input type="text" class="form-control" name="EPslope" value="0.001">
+            <input type="text" class="form-control" name="EPslope" value="0.001" style="width:160px">
           </div>
           <!-- input-group -->
 
@@ -133,7 +135,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="The maximum allowed abundance vs. RW slope for convergence">RW slope</label>
             </span>
-            <input type="text" class="form-control" name="RWslope" value="0.003">
+            <input type="text" class="form-control" name="RWslope" value="0.003" style="width:160px">
           </div>
           <!-- input-group -->
 
@@ -141,32 +143,9 @@
             <span class="input-group-addon" style="width:120px">
               <label title="The maximum allowed difference in FeI-FeII for convergence">|FeI-FeII|</label>
             </span>
-            <input type="text" class="form-control" name="feDiff" value="0.00">
+            <input type="text" class="form-control" name="feDiff" value="0.00" style="width:160px">
           </div>
           <!-- input-group -->
-        </div>
-
-
-        <div class="col-lg-1">
-          <div class="input-group">
-            <label for="checkbox" class="checkbox" title="Fix Teff">Fix T<sub>eff</sub></label>
-            <input type="checkbox" class="checkbox" name="fixTeff">
-          </div>
-
-          <div class="input-group">
-            <label for="checkbox" class="checkbox" title="Fix logg">Fix logg</label>
-            <input type="checkbox" class="checkbox" name="fixlogg">
-          </div>
-
-          <div class="input-group">
-            <label for="checkbox" class="checkbox" title="Fix [Fe/H]">Fix [Fe/H]</label>
-            <input type="checkbox" class="checkbox" name="fixfeh">
-          </div>
-
-          <div class="input-group">
-            <label for="checkbox" class="checkbox" title="Fix micro turbulence">Fix &xi;<sub>tur</sub></label>
-            <input type="checkbox" class="checkbox" name="fixvt">
-          </div>
         </div>
 
         <div class="col-lg-1">
@@ -188,6 +167,28 @@
           <div class="input-group">
             <label for="checkbox" class="checkbox" title="Use TMCal for a better guess on initial conditions">Initial guess</label>
             <input type="checkbox" class="checkbox" name="initial">
+          </div>
+        </div>
+
+        <div class="col-lg-1">
+          <div class="input-group">
+            <label for="checkbox" class="checkbox" title="Fix Teff">Fix T<sub>eff</sub></label>
+            <input type="checkbox" class="checkbox" name="fixTeff">
+          </div>
+
+          <div class="input-group">
+            <label for="checkbox" class="checkbox" title="Fix logg">Fix logg</label>
+            <input type="checkbox" class="checkbox" name="fixlogg">
+          </div>
+
+          <div class="input-group">
+            <label for="checkbox" class="checkbox" title="Fix [Fe/H]">Fix [Fe/H]</label>
+            <input type="checkbox" class="checkbox" name="fixfeh">
+          </div>
+
+          <div class="input-group">
+            <label for="checkbox" class="checkbox" title="Fix micro turbulence">Fix &xi;<sub>tur</sub></label>
+            <input type="checkbox" class="checkbox" name="fixvt">
           </div>
         </div>
 
