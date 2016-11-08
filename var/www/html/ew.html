@@ -25,31 +25,28 @@
 
     <h3>EW driver</h3>
     <p>Measuring EWs from a spectrum using a line list using <a href="http://www.astro.up.pt/~sousasag/ares/">ARES</a>.</p>
-    <p>The results will be send by email after the script is done running.
-      This may take a few minutes.<br>
-      The script is running when you press submit.<br>
-      Please be patient.<br>
+    <p>The results will be send by email after the script is done running. This may take a few minutes.<br> The script is running when you press submit.<br> Please be patient.<br>
     </p>
 
 
 
     <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewConf.py" method="post">
       <div class="row-fluid">
-        <div class="col-lg-4">
-            <div class="input-group">
-              <span class="input-group-addon" style="width:100px">
-                <label title="Line list in MOOG format">Spectrum</label>
+
+        <div class="col-lg-5">
+          <div class="input-group">
+            <span class="input-group-addon">
+                <label title="Line list in MOOG format" style="width:80px">Spectrum</label>
               </span>
-              <span class="input-group-btn">
-                <input type="file" class="btn btn-default" style="width:300px" name="spectrum" accept=".fits,.FITS,.fit,.FIT" required>
-              </span>
-            </div>
+            <input type="file" class="form-control-file btn btn-default btn-block" name="spectrum" accept=".fits,.FITS,.fit,.FIT" required>
+          </div>
+
 
           <div class="input-group">
-            <span class="input-group-addon" style="width:100px">
-              <label title="Line lists to use">Line list</label>
+            <span class="input-group-addon">
+              <label title="Line lists to use" style="width:80px">Line list</label>
             </span>
-            <select class="form-control" name="linelist" style="width:300px" multiple required>
+            <select class="form-control" name="linelist" multiple required>
               <option title="Line list by Sousa+ 2008/Tsantaki+ 2013">Optical (parameters)</option>
               <option title="Line list by Neves+">Optical (abundances)</option>
               <option title="Line list by Andreasen+ 2016">NIR (parameters)</option>
@@ -58,49 +55,80 @@
           </div>
 
           <div class="input-group">
-            <span class="input-group-addon" style="width:100px">
-              <label title="Email adress">Email</label>
+            <span class="input-group-addon">
+              <label title="Email adress" style="width:80px">Email</label>
             </span>
-            <input type="email" class="form-control" style="width:300px" name="email" placeholder="youremail@host" required>
+            <input type="email" class="form-control" name="email" placeholder="youremail@host" required>
+          </div>
+
+
+          <div class="input-group">
+
+            <span class="input-group-addon">
+                <label title="Let ARES determine the rejt parameter">
+                  <input type="radio" name="continuum" value="autoRejt" checked>Auto rejt
+                </label>
+              </span>
+
+            <span class="input-group-addon">
+                <label title="Specify the SNR, which is converted to a rejt">
+                  <input type="radio" name="continuum" value="snr">SNR
+                </label>
+              </span>
+            <span class="input-group-addon">
+                <input type="text" name="snr">
+              </span>
+
+            <span class="input-group-addon">
+                <label title="Specify the rejt parameter directly [0-1[">
+                  <input type="radio" name="continuum" value="rejt">rejt
+                </label>
+              </span>
+            <span class="input-group-addon">
+                <input type="text" name="rejt">
+              </span>
+
           </div>
         </div>
 
-        <div class="col-lg-2">
+
+
+        <div class="col-lg-3">
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label title="Minimum wavelength in &#197;">&lambda;<sub>min</sub></label>
-            </span>
+                <label title="Minimum wavelength in &#197;">&lambda;<sub>min</sub></label>
+              </span>
             <input type="text" class="form-control" name="w0" value="3500" required>
           </div>
-          <!-- input-group -->
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label title="Maximum wavelength in &#197;">&lambda;<sub>max</sub></label>
-            </span>
+                <label title="Maximum wavelength in &#197;">&lambda;<sub>max</sub></label>
+              </span>
             <input type="text" class="form-control" name="wf" value="25000" required>
           </div>
-          <!-- input-group -->
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label title="The radial velocity correction to be applied in km/s">RV (km/s)</label>
-            </span>
+                <label title="The radial velocity correction to be applied in km/s">RV (km/s)</label>
+              </span>
             <input type="text" class="form-control" name="rv" value="0" required>
           </div>
-          <!-- input-group -->
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
-              <label title="The smoothder parameters for ARES">Smooth noise</label>
-            </span>
+                <label title="The smoothder parameters for ARES">Smooth noise</label>
+              </span>
             <input type="text" class="form-control" name="smooth" value="4" required>
           </div>
-          <!-- input-group -->
+          <div class="checkbox">
+            <label title="Force ARES to run by removing problematic lines"><input type="checkbox" name="force">Force ARES to run</label>
+          </div>
         </div>
-        <!-- col-group -->
 
-        <div class="col-lg-2">
+
+
+        <div class="col-lg-3">
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
               <label title="Minimum allowed EW">EW min</label>
@@ -137,38 +165,9 @@
       </div>
       <!-- row -->
 
-      <div class="col-lg-2">
-        <div class="form-group">
-          <div class="col-sm-10">
-            <div class="checkbox">
-              <label title="Force ARES to run by removing problematic lines"><input type="checkbox" name="force">Force ARES to run</label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="input-group">
-          <span class="input-group-addon">
-            <label class="radio-inline active" title="Let ARES determine the rejt parameter"><input type="radio" name="continuum" value="autoRejt" checked>Auto rejt</label>
-          </span>
-          <span class="input-group-addon">
-            <label class="radio-inline" title="Specify the SNR, which is converted to a rejt"><input type="radio" name="continuum" value="snr">SNR</label>
-          </span>
-          <span class="input-group-addon">
-            <input type="text" name="snr">
-          </span>
-          <span class="input-group-addon">
-            <label class="radio-inline" title="Specify the rejt parameter directly [0-1["><input type="radio" name="continuum" value="rejt">rejt</label>
-          </span>
-          <span class="input-group-addon">
-            <input type="text" name="rejt">
-          </span>
-        </div>
-      </div>
 
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-lg-offset-6 col-lg-12">
           <button type="submit" class="btn btn-default">Submit</button>
         </div>
       </div>
