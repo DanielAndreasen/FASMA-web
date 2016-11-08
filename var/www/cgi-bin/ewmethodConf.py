@@ -5,11 +5,10 @@ import cgi, cgitb
 from ewDriver import ewdriver
 
 
-def cgi2dict(form, linelist):
+def cgi2dict(form):
     """Convert the form from cgi.FieldStorage to a python dictionary"""
 
-    params = {'linelist': linelist.value,
-              'initial': False,
+    params = {'initial': False,
               'fixTeff': False,
               'fixlogg': False,
               'fixfeh': False,
@@ -23,8 +22,7 @@ def cgi2dict(form, linelist):
                'All iteratively': 'allIter',
                'One iteratively': '1Iter'}
     for key in form.keys():
-        if key != 'linelist':
-            params[key] = form[key].value
+        params[key] = form[key].value
     params['outlier'] = outlier[params['outlier']]  # Translate to FASMA
     # Adjust the model atmosphere for FASMA
     if params['atmosphere'] == 'Kurucz':
@@ -33,7 +31,7 @@ def cgi2dict(form, linelist):
     return params
 
 
-def ew(form):
+def ew(form, name=None):
     """Create the configuration file for running the ARES driver"""
 
     fout = 'linelist.moog '
@@ -69,7 +67,7 @@ def ew(form):
     with open('/tmp/StarMe_ew.cfg', 'w') as f:
         f.writelines(fout + '\n')
 
-    parameters = ewdriver(starLines='/tmp/StarMe_ew.cfg', overwrite=True)
+    parameters = ewdriver(starLines='/tmp/StarMe_ew.cfg', overwrite=True, name=name)
     return parameters
 
 
@@ -115,21 +113,17 @@ if __name__ == '__main__':
     cgitb.enable()
 
     form = cgi.FieldStorage()
-
-    # Save the line list to a standard location
-    with open('/tmp/linelist.moog', 'w') as f:
-        f.write(form['linelist'].value)
-
     # Run the minimization for a line list
-    formDict = cgi2dict(form, form['linelist'])
-    parameters = ew(formDict)
+    formDict = cgi2dict(form)
+    parameters = ew(formDict, name=formDict['linelist'])
 
     # Show the finished html page
-    print "Content-type: text/html\n\n"
+    print 'Content-type: text/html\n\n'
     with open('../html/finish.html', 'r') as lines:
         for line in lines:
             if 'Congratulations' in line:
                 print line,
+                print '<h2 class="text-secondary text-center">Results for %s</h2>' % formDict['linelist'].rpartition('.')[0]
                 print '<br>'
                 parameters2HTML(parameters)
                 continue
