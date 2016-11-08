@@ -30,8 +30,7 @@
       The script is running when you press submit.<br>
       Please be patient.<br>
     </p>
-
-    <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewmethodConf.py" method="post">
+    <form class="form-horizontal" enctype="multipart/form-data" action="typechecking.php" method="post">
       <div class="row-fluid">
         <div class="col-lg-4">
 
@@ -119,7 +118,7 @@
             <span class="input-group-addon" style="width:120px">
               <label title="Number of maximum iterations">Iterations</label>
             </span>
-            <input type="text" class="form-control" name="iterations" value="160" style="width:160px">
+            <input type="number" class="form-control" name="iterations" value="160" style="width:160px">
           </div>
           <!-- input-group -->
 
@@ -195,7 +194,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" name="submit" value="1" class="btn btn-default">Submit</button>
         </div>
       </div>
     </form>
