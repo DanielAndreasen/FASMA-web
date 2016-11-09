@@ -30,7 +30,7 @@
 
 
 
-    <form class="form-horizontal" enctype="multipart/form-data" action="/cgi-bin/ewConf.py" method="post">
+    <form class="form-horizontal" enctype="multipart/form-data" action="ewChecking.php" method="post">
       <div class="row-fluid">
 
         <div class="col-lg-5">
@@ -65,28 +65,28 @@
           <div class="input-group">
 
             <span class="input-group-addon">
-                <label title="Let ARES determine the rejt parameter">
-                  <input type="radio" name="continuum" value="autoRejt" checked>Auto rejt
-                </label>
-              </span>
+              <label title="Let ARES determine the rejt parameter">
+                <input type="radio" name="continuum" value="autoRejt" checked>Auto rejt
+              </label>
+            </span>
 
             <span class="input-group-addon">
-                <label title="Specify the SNR, which is converted to a rejt">
-                  <input type="radio" name="continuum" value="snr">SNR
-                </label>
-              </span>
+              <label title="Specify the SNR, which is converted to a rejt">
+                <input type="radio" name="continuum" value="snr">SNR
+              </label>
+            </span>
             <span class="input-group-addon">
-                <input type="text" name="snr">
-              </span>
+              <input type="text" name="snr">
+            </span>
 
             <span class="input-group-addon">
-                <label title="Specify the rejt parameter directly [0-1[">
-                  <input type="radio" name="continuum" value="rejt">rejt
-                </label>
-              </span>
+              <label title="Specify the rejt parameter directly [0-1[">
+                <input type="radio" name="continuum" value="rejt">rejt
+              </label>
+            </span>
             <span class="input-group-addon">
-                <input type="text" name="rejt">
-              </span>
+              <input type="text" name="rejt">
+            </span>
 
           </div>
         </div>
@@ -98,14 +98,14 @@
             <span class="input-group-addon" style="width:120px">
                 <label title="Minimum wavelength in &#197;">&lambda;<sub>min</sub></label>
               </span>
-            <input type="text" class="form-control" name="w0" value="3500" required>
+            <input type="number" class="form-control" name="w0" value="3500" required>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon" style="width:120px">
                 <label title="Maximum wavelength in &#197;">&lambda;<sub>max</sub></label>
               </span>
-            <input type="text" class="form-control" name="wf" value="25000" required>
+            <input type="number" class="form-control" name="wf" value="25000" required>
           </div>
 
           <div class="input-group">
@@ -168,7 +168,7 @@
 
       <div class="form-group">
         <div class="col-lg-offset-6 col-lg-12">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" name="submit" value="1" class="btn btn-default">Submit</button>
         </div>
       </div>
     </form>
