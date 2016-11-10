@@ -46,7 +46,7 @@ def ares(form):
         fout += ',force'
 
     with open('/tmp/StarMe_ares.cfg', 'w') as f:
-        f.writelines(fout)
+        f.writelines(fout+'\n')
 
     aresdriver('/tmp/StarMe_ares.cfg')
 
@@ -56,10 +56,6 @@ if __name__ == '__main__':
     cgitb.enable()
 
     form = cgi.FieldStorage()
-
-    # Save the spectrum to a standard location
-    with open('/tmp/spectrum.fits', 'w') as f:
-        f.write(form['spectrum'].value)
 
     # Run ARES for one or several line lists
     if isinstance(form['linelist'], list):
