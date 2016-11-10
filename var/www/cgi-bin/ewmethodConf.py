@@ -9,7 +9,7 @@ def cgi2dict(form):
     """Convert the form from cgi.FieldStorage to a python dictionary"""
 
     params = {'initial': False,
-              'fixTeff': False,
+              'fixteff': False,
               'fixlogg': False,
               'fixfeh': False,
               'fixvt': False,
@@ -55,7 +55,7 @@ def ew(form, name=None):
     if form['outlier']:
         fout += ',outlier:%s' % form['outlier']
         fout += ',sigma:%s' % form['sigma']
-    if form['fixTeff']:
+    if form['fixteff']:
         fout += ',teff'
     if form['fixlogg']:
         fout += ',logg'
