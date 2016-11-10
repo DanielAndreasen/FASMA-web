@@ -23,10 +23,10 @@ body {
 
 /*The loader*/
 .spinner {
-  width: 100px;
+  /*width: 100px;
   height: 100px;
   padding-top: 50px;
-  background: #2b3e50;
+  background: #2b3e50;*/
   border-radius: 50%;
   margin: 50px;
   display: inline-block;
