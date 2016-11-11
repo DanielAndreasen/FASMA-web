@@ -1,1 +1,8 @@
 var/www/cgi-bin/*Driver.py
+var/www/cgi-bin/ARES
+var/www/cgi-bin/kurucz95
+var/www/cgi-bin/moogjul2014
+var/www/cgi-bin/TMCALC
+var/www/cgi-bin/interpolation.py
+var/www/cgi-bin/minimization.py
+var/www/cgi-bin/utils.py
