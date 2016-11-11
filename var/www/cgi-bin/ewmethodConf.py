@@ -3,6 +3,7 @@
 # Import modules for CGI handling
 import cgi, cgitb
 from ewDriver import ewdriver
+from emailSender import sendEmail
 
 
 def cgi2dict(form):
@@ -116,6 +117,8 @@ if __name__ == '__main__':
     # Run the minimization for a line list
     formDict = cgi2dict(form)
     parameters = ew(formDict, name=formDict['linelist'])
+
+    sendEmail(to=formDict['email'], driver='EWmethod', data='/tmp/EWresults.dat')
 
     # Show the finished html page
     print 'Content-type: text/html\n\n'

@@ -3,6 +3,7 @@
 # Import modules for CGI handling
 import cgi, cgitb
 from aresDriver import aresdriver
+from emailSender import sendEmail
 
 
 def cgi2dict(form, linelist):
@@ -65,6 +66,8 @@ if __name__ == '__main__':
     else:
         formDict = cgi2dict(form, form['linelist'])
         ares(formDict)
+
+    sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
