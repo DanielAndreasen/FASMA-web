@@ -24,7 +24,43 @@
     <h3 class="text-secondary text-center">Fast Analysis of Spectra Made Automatically</h3>
 
     <h3>Documentation</h3>
-    <strong>This site is under construction!</strong>
+    <h4>Preparing your data</h4>
+    <p>In order to run FASMA your data needs to be correctly formatted. The line
+    list needs to be formatted according to <a href="http://www.as.utexas.edu/~chris/moog.html">MOOG.</a>
+    The line list from the <a href="/ew.html">EW driver</a> will already be
+    formatted correctly.</p>
+    <p>The spectrum you wish to analysize should be 1D with the fluxes. The
+    wavelength information should be stored in the header keywords: NAXIS1, CRVAL1,
+    and CDELT1. For the EW driver there is no need to normalize the spectrum
+    since this is done by ARES on the fly. However, the best results are found
+    when the spectrum is as clean as possible. This includes removing cosmic,
+    and other artifacts from the spectrum.</p>
+
+    <h4>Limitations</h4>
+    <p>The way this web application is build it is only able to run one
+    instance at the time. This means you will be put at the end of a queue
+    when you submit a job. So please be patient when other jobs are finishing.
+    Typical run time for the ARES driver is around 1 min, while it is up to
+    7 min for getting parameters using the EW method (depending on the problem).</p>
+
+    <p>Therefore we kindly ask you not to submit an unreasonable amount of jobs.
+    If you wish to analyze a large sample of stars we are open for
+    collaborations and we gladly offer our expertise on the fields presented in
+    this web application.</p>
+
+    <h4>Problems</h4>
+    <p>If you have any problems running FASMA in any of the modes, please do
+    not hesitate contacting the team. We will appreciate if you send as much
+    information as possible so we can troubleshoot the problem. We refer to
+    the <a href="/contact.html"></a>contact page for more information.</p>
+
+    <h4>Future plans</h4>
+    <p>We have a few plans for the future of FASMA. Currently we are working
+    on a fitting method to get the parameters as well. This will be presented
+    in another paper when it is ready and tested. We also wish to make the
+    user experience even smoother by having a mode to get all the information
+    available from the spectrum which FASMA can provide. This includes the
+    parameters and abundances.</p>
 
   </div>
 </body>
