@@ -63,11 +63,12 @@ if __name__ == '__main__':
         for linelist in form['linelist']:
             formDict = cgi2dict(form, linelist)
             ares(formDict)
+            sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
     else:
         formDict = cgi2dict(form, form['linelist'])
         ares(formDict)
+        sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
 
-    sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
