@@ -49,7 +49,3 @@ def sendEmail(to, driver, data):
     s = smtplib.SMTP(host='mail.astro.up.pt', port=25)
     s.sendmail(me, [you], msg.as_string())
     s.quit()
-
-
-if __name__ == '__main__':
-    sendEmail(to='daniel.andreasen@astro.up.pt', driver='EW', data='/tmp/spectrum.moog')
