@@ -34,7 +34,7 @@ def ares(form):
     elif form['linelist'] == 'NIR (parameters)':
         fout = 'Andreasen2016_nir.lst'
     elif form['linelist'] == 'Optical (abundances)':
-        fout = 'Neves2009_opt.lst'
+        fout = 'Neves2009_elements.lst'
     fout += ' /tmp/spectrum.fits'
     fout += ' lambdai:%s,lambdaf:%s,smoothder:%s' % (form['w0'], form['wf'], form['smooth'])
     fout += ',space:%s,lineresol:%s' % (form['space'], form['lineresol'])
