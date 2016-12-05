@@ -25,7 +25,65 @@
 
     <h3>Abundance driver</h3>
     <p>Obtain abundance from a spectrum.</p>
-    <strong>This is under construction!</strong>
+
+    <form class="form-horizontal" enctype="multipart/form-data" action="ewChecking.php" method="post">
+      <div class="row-fluid">
+
+        <div class="col-lg-offset-3 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <label title="Line list in MOOG format" style="width:80px">Line list</label>
+            </span>
+            <input type="file" class="form-control-file btn btn-default btn-block" name="linelist" accept=".moog" required>
+          </div>
+
+          <div class="input-group col-lg-12">
+            <span class="input-group-addon" style="width:105px">
+              <label title="The effective temperature in Kelvin">T<sub>eff</sub></label>
+            </span>
+            <input type="text" class="form-control" name="Teff" value="5777" required>
+          </div>
+
+          <div class="input-group col-lg-12">
+            <span class="input-group-addon" style="width:105px">
+              <label title="The surface gravity in dex">logg</label>
+            </span>
+            <input type="text" class="form-control" name="logg" value="4.44" required>
+          </div>
+
+          <div class="input-group col-lg-12">
+            <span class="input-group-addon" style="width:105px">
+              <label title="The overall metallicity/iron in dex">[Fe/H]</label>
+            </span>
+            <input type="text" class="form-control" name="feh" value="0.00" required>
+          </div>
+
+          <div class="input-group col-lg-12">
+            <span class="input-group-addon" style="width:105px">
+              <label title="The micro turbulence in km/s">&xi;<sub>tur</sub></label>
+            </span>
+            <input type="text" class="form-control" name="vt" value="1.00" required>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon">
+              <label title="Email adress" style="width:80px">Email</label>
+            </span>
+            <input type="email" class="form-control" name="email" placeholder="youremail@host" required>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <div class="col-lg-offset-6 col-lg-6">
+          <button type="submit" name="submit" value="1" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+
+
 
   </div>
 </body>
