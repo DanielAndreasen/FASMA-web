@@ -1,8 +1,10 @@
-Hi Elisa,
+Dear user of FASMA,
 
-Please forgive me for sending this email. I'm checking something with Python :P
-If you receive this email, I will be happy.
-Have a nice weekend in Spain :)
+Thanks for using FASMA for your research. Your request was successfully
+terminated. See the results attached with this email.
 
-Cheers,
-Daniel T. Andreasen
+If you have any problems/questions/suggestion for FASMA, feel free to contact
+Daniel Andreasen at daniel.andreasen@astro.up.pt.
+
+Happy spectroscopying,
+The FASMA team
