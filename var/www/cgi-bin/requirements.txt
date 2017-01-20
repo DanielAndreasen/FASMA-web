@@ -1,0 +1,6 @@
+numpy>=1.7.0
+scipy>=0.16
+PyYAML
+statsmodels
+patsy
+pandas>=0.17.0
