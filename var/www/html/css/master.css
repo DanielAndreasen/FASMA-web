@@ -2,6 +2,9 @@ body {
   padding-top: 42px;
 }
 
+h4 {
+  color: #0ce3ac;
+}
 
  /*Dropdown on when hover */
 .dropdown-menu li:hover .sub-menu {
