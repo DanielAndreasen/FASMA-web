@@ -1,7 +1,9 @@
 #!/home/daniel/Software/anaconda3/bin/python
 
 # Import modules for CGI handling
+import os
 import cgi, cgitb
+from time import time
 from aresDriver import aresdriver
 from emailSender import sendEmail
 
@@ -15,7 +17,7 @@ def cgi2dict(form, linelist):
     return params
 
 
-def ares(form):
+def ares(form, timestamp, fitsfile):
     """Create the configuration file for running the ARES driver"""
     def rejt_from_snr(snr):
         """Calculate rejt from SNR"""
@@ -35,7 +37,7 @@ def ares(form):
         fout = 'Andreasen2016_nir.lst'
     elif form['linelist'] == 'Optical (abundances)':
         fout = 'Neves2009_elements.lst'
-    fout += ' /tmp/spectrum.fits'
+    fout += ' /tmp/%s' % fitsfile
     fout += ' lambdai:%s,lambdaf:%s,smoothder:%s' % (form['w0'], form['wf'], form['smooth'])
     fout += ',space:%s,lineresol:%s' % (form['space'], form['lineresol'])
     fout += ',miniline:%s,EWcut:%s' % (form['miniline'], form['EWcut'])
@@ -46,10 +48,12 @@ def ares(form):
     if 'force' in form.keys():
         fout += ',force'
 
-    with open('/tmp/StarMe_ares.cfg', 'w') as f:
+    cfgfile = '/tmp/StarMe_ares%s.cfg' % timestamp
+    with open(cfgfile, 'w') as f:
         f.writelines(fout+'\n')
 
-    aresdriver('/tmp/StarMe_ares.cfg')
+    aresdriver(cfgfile, timestamp, fitsfile, form['spectrum'])
+    os.remove(cfgfile)
 
 
 if __name__ == '__main__':
@@ -57,18 +61,33 @@ if __name__ == '__main__':
     cgitb.enable()
 
     form = cgi.FieldStorage()
+    timestamp = str(time()).replace('.', '')
+    fitsfile = 'spectrum%s.fits' % timestamp
+    os.system('mv /tmp/spectrum.fits /tmp/%s' % fitsfile)
 
     # Run ARES for one or several line lists
     if isinstance(form['linelist'], list):
         for linelist in form['linelist']:
+            timestamp = str(time()).replace('.', '')
+            output = '/tmp/spectrum%s.moog' % timestamp
             formDict = cgi2dict(form, linelist)
-            ares(formDict)
-            sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
+            final_output = '/tmp/%s.moog' % formDict['spectrum'].split('.')[0]
+            ares(formDict, timestamp=timestamp, fitsfile=fitsfile)
+            os.system('mv %s %s' % (output, final_output))
+            sendEmail(to=formDict['email'], driver='EW', data=final_output)
+            os.remove(final_output)
     else:
+        timestamp = str(time()).replace('.', '')
+        output = '/tmp/spectrum%s.moog' % timestamp
         formDict = cgi2dict(form, form['linelist'])
-        ares(formDict)
-        sendEmail(to=formDict['email'], driver='EW', data='/tmp/spectrum.moog')
+        final_output = '/tmp/%s.moog' % formDict['spectrum'].split('.')[0]
+        ares(formDict, timestamp=timestamp, fitsfile=fitsfile)
+        os.system('mv %s %s' % (output, final_output))
+        sendEmail(to=formDict['email'], driver='EW', data=final_output)
+        os.remove(final_output)
 
+    os.remove('/tmp/%s' % fitsfile)
+    os.remove('/tmp/mine.opt')
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
