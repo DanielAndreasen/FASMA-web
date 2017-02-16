@@ -27,8 +27,6 @@ def abundance(form):
 
 if __name__ == '__main__':
     # Enable debugging
-    import os
-    os.system('touch /tmp/test1')
     cgitb.enable()
 
     form = cgi.FieldStorage()
@@ -36,7 +34,7 @@ if __name__ == '__main__':
     # Run ARES for one or several line lists
     formDict = cgi2dict(form)
     abundance(formDict)
-    sendEmail(to=formDict['email'], driver='abundances', data='/tmp/abundances.dat')
+    sendEmail(to=formDict['email'], driver='abundances', data='/tmp/abundresults.dat')
 
 
     # Show the finished html page
