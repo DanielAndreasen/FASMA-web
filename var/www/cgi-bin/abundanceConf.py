@@ -1,7 +1,9 @@
 #!/home/daniel/Software/anaconda3/bin/python
 
 # Import modules for CGI handling
+import os
 import cgi, cgitb
+from time import time
 from abundanceDriver import abundancedriver
 from emailSender import sendEmail
 
@@ -14,15 +16,17 @@ def cgi2dict(form):
     return params
 
 
-def abundance(form):
+def abundance(form, timestamp, starname):
     """Create the configuration file for running the abundance driver"""
     # Make the StarMe_ares.cfg
-    fout = '/tmp/linelist.moog {Teff} {logg} {feh} {vt}'.format(**form)
+    fout = '/tmp/{linelist} {Teff} {logg} {feh} {vt}'.format(**form)
 
-    with open('/tmp/StarMe_abundance.cfg', 'w') as f:
+    cfgfile = '/tmp/StarMe_abundance%s.cfg' % timestamp
+    with open(cfgfile, 'w') as f:
         f.writelines(fout+'\n')
 
-    abundancedriver('/tmp/StarMe_abundance.cfg')
+    abundancedriver(cfgfile, timestamp=timestamp, starname=starname)
+    os.remove(cfgfile)
 
 
 if __name__ == '__main__':
@@ -30,12 +34,23 @@ if __name__ == '__main__':
     cgitb.enable()
 
     form = cgi.FieldStorage()
-
-    # Run ARES for one or several line lists
     formDict = cgi2dict(form)
-    abundance(formDict)
-    sendEmail(to=formDict['email'], driver='abundances', data='/tmp/abundresults.dat')
 
+    # Make a unique session
+    timestamp = str(time()).replace('.', '')
+    linelist = 'linelist%s.moog' % timestamp
+    formDict['starname'] = formDict['linelist'].split('.')[0]
+    formDict['linelist'] = linelist
+    os.system('mv /tmp/linelist.moog /tmp/%s' % linelist)
+
+    starname = formDict['starname']
+    final_output = '/tmp/%s.dat' % starname
+    output = '/tmp/abundresults%s.dat' % timestamp
+
+    abundance(formDict, timestamp, starname)
+    os.system('mv %s %s' % (output, final_output))
+    sendEmail(to=formDict['email'], driver='abundances', data=final_output)
+    os.remove(final_output)
 
     # Show the finished html page
     print "Content-type: text/html\n\n"
