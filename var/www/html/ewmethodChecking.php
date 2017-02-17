@@ -147,7 +147,7 @@ if (isset($_POST['submit']) and $_POST['submit'] == 1) {
         }
     } else {
         $error14 = 'none existent';
-        $fixTeff = '';
+        $fixteff = '';
     }
 
     if (isset($_POST['fixlogg'])) {
