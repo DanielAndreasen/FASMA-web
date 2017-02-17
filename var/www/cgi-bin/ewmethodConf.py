@@ -1,6 +1,7 @@
 #!/home/daniel/Software/anaconda3/bin/python
 
 # Import modules for CGI handling
+import os
 import cgi, cgitb
 from ewDriver import ewdriver
 from emailSender import sendEmail
@@ -119,6 +120,14 @@ if __name__ == '__main__':
     parameters = ew(formDict, name=formDict['linelist'])
 
     sendEmail(to=formDict['email'], driver='EWmethod', data='/tmp/EWresults.dat')
+    os.remove('/tmp/EWresults.dat')
+    os.remove('/tmp/linelist.moog')
+    os.remove('/tmp/StarMe_ew.cfg')
+    os.remove('/tmp/batch.par')
+    os.remove('/tmp/out.atm')
+    os.remove('/tmp/result.out')
+    os.remove('/tmp/summary.out')
+    os.remove('/tmp/error_summary.out')
 
     # Show the finished html page
     print 'Content-type: text/html\n\n'
